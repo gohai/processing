@@ -182,7 +182,7 @@ console.length = 500
 
 # Any additional Java options when running. 
 # If you change this and can't run things, it's your own durn fault.
-run.options = 
+run.options = -XX:+ShowMessageBoxOnError -Xrs
 
 # settings for the -XmsNNNm and -XmxNNNm command line option
 run.options.memory = false

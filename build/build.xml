@@ -400,7 +400,7 @@
     </copy>
 
     <!-- removed ignoreerrors="true" for 3.0 release process -->
-    <get src="http://download.processing.org/reference.zip" 
+    <get src="http://sukzessiv.net/~gohai/p5-arm/reference-io.zip"
          dest="../java/reference.zip" 
          usetimestamp="true" />
 

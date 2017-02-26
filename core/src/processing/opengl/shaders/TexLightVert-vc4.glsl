@@ -101,7 +101,8 @@ void main() {
   // prevent register allocation failure by limiting ourselves to
   // two lights for now
   for (int i = 0; i < 2; i++) {
-    if (lightCount == i) break;
+    // reduce register pressure by running this loop twice unconditionally
+    // if (lightCount == i) break;
     
     vec3 lightPos = lightPosition[i].xyz;
     bool isDir = lightPosition[i].w < one_float;

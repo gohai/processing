@@ -145,19 +145,12 @@ public class Sketch {
     codeFolder = new File(folder, "code");
     dataFolder = new File(folder, "data");
 
-    List<String> filenames = new ArrayList<>();
-    List<String> extensions = new ArrayList<>();
+    List<SketchCode> files = new ArrayList<>();
 
-    getSketchCodeFiles(filenames, extensions);
+    loadSketchCodeFiles(files);
 
-    codeCount = filenames.size();
-    code = new SketchCode[codeCount];
-
-    for (int i = 0; i < codeCount; i++) {
-      String filename = filenames.get(i);
-      String extension = extensions.get(i);
-      code[i] = new SketchCode(new File(folder, filename), extension);
-    }
+    codeCount = files.size();
+    code = files.toArray(new SketchCode[codeCount]);
 
     // move the main class to the first tab
     // start at 1, if it's at zero, don't bother
@@ -177,6 +170,20 @@ public class Sketch {
     // set the main file to be the current tab
     if (editor != null) {
       setCurrentCode(0);
+    }
+  }
+
+
+  public void loadSketchCodeFiles(List<SketchCode> addTo) {
+    List<String> filenames = new ArrayList<>();
+    List<String> extensions = new ArrayList<>();
+
+    getSketchCodeFiles(filenames, extensions);
+
+    for (int i = 0; i < filenames.size(); i++) {
+      String filename = filenames.get(i);
+      String extension = extensions.get(i);
+      addTo.add(new SketchCode(new File(folder, filename), extension));
     }
   }
 

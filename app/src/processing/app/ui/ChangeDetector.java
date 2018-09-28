@@ -131,6 +131,8 @@ public class ChangeDetector implements WindowFocusListener {
 
 
     boolean changes = added || removed || modified;
+    // HACK
+    changes = false;
     // Do both PDE and disk change for any one file?
     List<SketchCode> mergeConflicts = modifiedCodesFinal.stream()
       .filter(SketchCode::isModified)

@@ -148,6 +148,7 @@ public class Sketch {
     List<SketchCode> files = new ArrayList<>();
 
     loadSketchCodeFiles(files);
+    loadDataCodeFiles(files);
 
     codeCount = files.size();
     code = files.toArray(new SketchCode[codeCount]);
@@ -184,6 +185,26 @@ public class Sketch {
       String filename = filenames.get(i);
       String extension = extensions.get(i);
       addTo.add(new SketchCode(new File(folder, filename), extension));
+    }
+  }
+
+
+  public void loadDataCodeFiles(List<SketchCode> addTo) {
+    if (hasDataFolder() == false) {
+      return;
+    }
+
+    String list[] = dataFolder.list();
+
+    for (String filename : list) {
+      // HACK
+      if (filename.toLowerCase().endsWith(".glsl") == false) {
+        continue;
+      }
+      if (new File(dataFolder, filename).isFile() == false) {
+        continue;
+      }
+      addTo.add(new SketchCode(new File(dataFolder, filename), "glsl"));
     }
   }
 
